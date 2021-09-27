@@ -5,8 +5,13 @@ class UsersController < ApplicationController
     if @user
       render json: @user
     else
-      render json: {error: "user not found"}, status: :not_found
+      render json: {error: "not authorized"}, status: :unauthorized
     end
+  end
+
+  def delete
+    session.delete :user_id
+    head :no_content
   end
 
 
